@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shared Brain</title>
+<meta name="theme-color" content="#1a1b26">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="setup" class="screen hidden">
+  <div class="setup-box">
+    <h1>Shared Brain</h1>
+    <p>Enter a fine-grained GitHub token with <code>Contents: Read and write</code> access to your notes repository.</p>
+    <input id="token-input" type="password" placeholder="ghp_... or github_pat_..." autocomplete="off">
+    <button id="token-save">Connect</button>
+    <p class="hint">Stored only in this browser's local storage. Never sent anywhere except api.github.com.</p>
+  </div>
+</div>
+
+<div id="app" class="screen hidden">
+  <header id="topbar">
+    <button id="menu-btn" class="icon-btn" aria-label="Menu">☰</button>
+    <span id="current-path">Notes</span>
+    <div class="spacer"></div>
+    <button id="edit-toggle-btn" class="icon-btn" aria-label="Edit">✎</button>
+    <button id="save-btn" class="icon-btn hidden" aria-label="Save">💾</button>
+    <button id="refresh-btn" class="icon-btn" aria-label="Refresh">⟳</button>
+  </header>
+
+  <div id="layout">
+    <nav id="sidebar">
+      <div id="tree"></div>
+      <div id="sidebar-footer">
+        <button id="new-file-btn">+ New file</button>
+        <button id="logout-btn">Sign out</button>
+      </div>
+    </nav>
+    <div id="sidebar-backdrop"></div>
+
+    <main id="content">
+      <div id="empty-state" class="empty-state">
+        <p>Pick a note from the sidebar.</p>
+      </div>
+      <article id="reader" class="markdown-body hidden"></article>
+      <textarea id="editor" class="hidden" spellcheck="false"></textarea>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+</div>
+
+<script src="config.js"></script>
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/purify.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
